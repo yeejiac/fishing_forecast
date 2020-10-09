@@ -1,0 +1,9 @@
+configparser
+loguru
+sqlalchemy
+requests
+numpy
+pandas
+mysql-connector
+bs4
+zipfile
