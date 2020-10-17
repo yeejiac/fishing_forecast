@@ -20,6 +20,7 @@ def extractNum(str):
 
 if __name__ == '__main__':
     timeList = [0,3,6,9,12,15,18,21]
+    timeList2 = [0, 6]
 
     today = datetime.date.today()
     d1 = today.strftime("%Y%m%d")
@@ -29,6 +30,7 @@ if __name__ == '__main__':
     currhour = datetime.datetime.now().hour
     print(currhour)
     closetTiming = closest(currhour, timeList)
+    closetTiming2 = closest(currhour, timeList2)
     sql1 = "SELECT * FROM weather_data.weather_table WHERE DISTRICT = 'Xinyi District' AND DAY = '{}' AND TIME = '{}:00:00'".format(d2, str(closetTiming).zfill(2))
     df_weather  = db.showTable(sql1)
     if df_weather.empty:
@@ -43,7 +45,7 @@ if __name__ == '__main__':
         logger.debug("weather data: DataFrame founded")
         print(df_weather)
 
-    sql2 = "SELECT * FROM weather_data.tide_table WHERE DISTRICT = 'PENGJIAYU-KEELUNG INSHORE' AND DAY = '{}' AND TIME = '{}:00:00'".format(d2, str(closetTiming).zfill(2))
+    sql2 = "SELECT * FROM weather_data.tide_table WHERE DISTRICT = 'PENGJIAYU-KEELUNG INSHORE' AND DAY = '{}' AND TIME = '{}:00:00'".format(d2, str(closetTiming2).zfill(2))
     df_tide = db.showTable(sql2)
     if df_tide.empty:
         print('DataFrame is empty!')
